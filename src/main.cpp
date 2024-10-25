@@ -4,14 +4,14 @@
 #define LED_PIN 8
 #define LED_BUILTIN 10
 #define NUM_LEDS 300
-#define EYE_SIZE 15
+#define EYE_SIZE 11
 #define BRIGHTNESS 200
 #define LED_TYPE WS2812
 #define COLOR_ORDER GRB
 CRGB leds[NUM_LEDS];
-CPixelView<CRGB> *Mouth = new CPixelView<CRGB>(leds, 0, 100);
-CPixelView<CRGB> *LeftEye = new CPixelView<CRGB>(leds, 150, 150+EYE_SIZE);
-CPixelView<CRGB> *RightEye = new CPixelView<CRGB>(leds, 230, 150+EYE_SIZE);
+CPixelView<CRGB> *Mouth = new CPixelView<CRGB>(leds, 250, 295);
+CPixelView<CRGB> *LeftEye = new CPixelView<CRGB>(leds, 142, 142+EYE_SIZE);
+CPixelView<CRGB> *RightEye = new CPixelView<CRGB>(leds, 203, 203+EYE_SIZE);
 
 
 
