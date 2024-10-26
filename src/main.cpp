@@ -66,14 +66,18 @@ void jackOLanternEyes(CPixelView<CRGB> *ledSet) {
   }
 }
 
-void rainbowShift(CPixelView<CRGB> *ledSet) {
+void redLightning(CPixelView<CRGB> *ledSet) {
+  
+}
+
+void rainbowStrobe(CPixelView<CRGB> *ledSet) {
 
   // Fill the LEDs with a rainbow gradient starting from startHue
-  fill_rainbow(*ledSet, ledSet->size(), RainbowHue, 7);  // 7 controls the color spread
+  fill_rainbow_circular(*ledSet, ledSet->size(), RainbowHue);  // 7 controls the color spread
 
-  RainbowHue += 1; // Shift the start of the rainbow
+  RainbowHue += 4; // Shift the start of the rainbow
 
-  if (RainbowHue == 255){
+  if (RainbowHue > 255){
     RainbowHue = 0;
   }
 }
@@ -126,7 +130,7 @@ void loop()
     fadeToBlackAndBack(Mouth);
     break;
   case 0x50:
-    rainbowShift(Mouth);
+    rainbowStrobe(Mouth);
     break;
   default:
     Mouth->fill_solid(CRGB::Yellow);
@@ -154,11 +158,15 @@ void loop()
     jackOLanternEyes(LeftEye);
     jackOLanternEyes(RightEye);
     break;
+  case 0x5:
+    rainbowStrobe(LeftEye);
+    rainbowStrobe(RightEye);
+    break;
   default:
     LeftEye->fill_solid(CRGB::Yellow);
     RightEye->fill_solid(CRGB::Yellow);
   }
 
   FastLED.show();
-  delay(50);
+  delay(10);
 }
